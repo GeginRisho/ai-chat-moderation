@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Galaxy AI Chat</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/static/manifest.json">
+
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/static/sw.js');
+    }
+    </script>
+
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at top, #1a002b, #000000);
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Animated Stars */
+        body::before {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: transparent url("https://www.transparenttextures.com/patterns/stardust.png") repeat;
+            animation: moveStars 100s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes moveStars {
+            from { transform: translate(0, 0); }
+            to { transform: translate(-500px, -500px); }
+        }
+
+        .card {
+            position: relative;
+            background: rgba(20, 0, 40, 0.8);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 30px #6a00ff;
+            text-align: center;
+            width: 320px;
+            backdrop-filter: blur(10px);
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #9d00ff;
+            text-shadow: 0 0 10px #6a00ff;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            background: #1a002b;
+            color: white;
+            font-size: 14px;
+            box-shadow: 0 0 10px rgba(106,0,255,0.5);
+        }
+
+        input::placeholder {
+            color: #aaa;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 20px;
+            border: none;
+            background: linear-gradient(45deg, #4b00ff, #001eff);
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            box-shadow: 0 0 15px #6a00ff;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #9d00ff, #3b00ff);
+            box-shadow: 0 0 25px #9d00ff;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+    <h2>Welcome To The Chat</h2>
+    <input id="username" placeholder="Enter username">
+    <input id="room" placeholder="Create Room code or Room code">
+    <button onclick="joinRoom()">Enter Galaxy</button>
+</div>
+
+<script>
+function joinRoom(){
+    const username = document.getElementById("username").value;
+    const room = document.getElementById("room").value;
+
+    if(username === "" || room === ""){
+        alert("Please enter username and room code");
+        return;
+    }
+
+    window.location.href = `/chat?room=${room}&username=${username}`;
+}
+</script>
+
+</body>
+</html>
