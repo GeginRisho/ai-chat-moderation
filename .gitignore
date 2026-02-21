@@ -2,3 +2,5 @@ venv/
 __pycache__/
 *.pyc
 database.db
+cyberbullying_model.pkl
+tfidf_vectorizer.pkl
